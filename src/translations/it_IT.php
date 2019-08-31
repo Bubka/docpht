@@ -220,5 +220,9 @@
         'IP addresses are anonymized due to privacy' => 'Gli indirizzi IP sono resi anonimi a causa della privacy',
         'Severity' => 'Gravità',
         'Authorized access' => 'Accesso autorizzato',
-        'Attempt to access' => 'Tentativo di accesso', 
+        'Attempt to access' => 'Tentativo di accesso',
+        'Title' => 'Titolo',
+        'Edit title' => 'Modifica titolo',
+        'Rename title' => 'Rinomina titolo',
+        'Enter title' => 'Inserisci il titolo',
     ], 'it_IT');

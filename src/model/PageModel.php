@@ -145,6 +145,64 @@ class PageModel
     }
 
     /**
+     * renamePageTitle
+     *
+     * @param  mixed $id
+     * @param  mixed $filename
+     *
+     * @return void
+     */
+    public function renamePageTitle(string $id, string $filename)
+    {
+        $pages = $this->connect();
+        $getTitle = $this->getFilename($id);
+
+        foreach ($pages as $key => $value) {
+
+            if ($value['pages']['id'] === $id && isset($filename)) {
+                $filename = strtolower(str_replace(' ', '-', pathinfo($filename, PATHINFO_FILENAME)));
+                $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($value['pages']['topic']))) .'/'. preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($filename)));
+                
+                rename($value['pages']['phppath'],'pages/'.$slug.'.php');
+                rename($value['pages']['jsonpath'],'data/'.$slug.'.json');
+
+                $phpPath = 'pages/'.$slug.'.php';
+                $jsonPath = 'data/'.$slug.'.json';
+
+                $pages[$key] = array(
+                    'pages' => [
+                        'id' => $value['pages']['id'],
+                        'slug' => $slug,
+                        'topic' => $value['pages']['topic'],
+                        'filename' => $filename,
+                        'phppath' => $phpPath,
+                        'jsonpath' => $jsonPath,
+                        'published' => $value['pages']['published'],
+                        'home' => $value['pages']['home']
+                    ]
+                );
+
+                $this->disconnect(self::DB, $pages);
+            }
+        }
+    }
+
+    /**
+     * getPageTitle
+     *
+     * @param  string $id
+     *
+     * @return string
+     */
+    public function getPageTitle($id)
+    {
+        $data = $this->connect();
+        $key = $this->findKey($data, $id);
+        
+        return str_replace('-', ' ', $data[$key]['pages']['filename']);
+    }
+
+    /**
      * getPagesByTopic
      *
      * @param  string $topic

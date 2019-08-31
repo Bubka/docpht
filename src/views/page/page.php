@@ -9,6 +9,10 @@ if(isset($statusPage['alert']) && $home['set']) {
     echo $statusPage['alert'];
 }
 
+if (isset($_SESSION['Active'])) {
+    echo '<a href="page/rename-title" class="btn btn-outline-secondary btn-sm float-right" role="button">'.$t->trans("Edit title").'</a>';
+}
+
 if (isset($values)) {
     foreach ($values as $value) {
         echo $value;

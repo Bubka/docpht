@@ -31,6 +31,7 @@ use DocPHT\Form\AddSectionForm;
 use DocPHT\Form\CreatePageForm;
 use DocPHT\Form\DeletePageForm;
 use DocPHT\Form\RemoveUserForm;
+use DocPHT\Form\RenamePageForm;
 use DocPHT\Form\UpdatePageForm;
 use DocPHT\Form\UploadLogoForm;
 use DocPHT\Model\HomePageModel;
@@ -84,6 +85,7 @@ class BaseController
 	protected $accessLogModel;
 	protected $loginForm;
 	protected $session;
+	protected $renamePageForm;
 
 	public function __construct()
 	{
@@ -120,6 +122,7 @@ class BaseController
 		$this->accessLogModel = new AccessLogModel();
 		$this->loginForm = new LoginForm();
 		$this->session = new Session();
+		$this->renamePageForm = new RenamePageForm();
 	}
 
 	public function search()

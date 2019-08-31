@@ -163,6 +163,8 @@ $route->group('/page', function()
         $this->get_post('/publish', 'DocPHT\Controller\FormPageController@getPublish');
         // /page/home-set
         $this->get_post('/home-set', 'DocPHT\Controller\FormPageController@setHome');
+        // /page/rename-title
+        $this->get_post('/rename-title', 'DocPHT\Controller\FormPageController@getRenamePageForm');
     } else {
         $this->any('/*', function(){
             $login = new LoginController();

@@ -88,6 +88,15 @@ class FormPageController extends BaseController
 		$this->view->show('form-page/modify_section.php', ['form' => $form]);
 		$this->view->show('partial/footer.php');
 	}
+
+	public function getRenamePageForm()
+	{
+		$form = $this->renamePageForm->create();
+
+		$this->view->show('partial/head.php', ['PageTitle' => T::trans('Edit title')]);
+		$this->view->show('form-page/rename_page_title.php', ['form' => $form]);
+		$this->view->show('partial/footer.php');
+	}
 	
 	public function getRemoveSectionForm()
 	{

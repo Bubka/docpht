@@ -42,9 +42,10 @@ class PublishPageForm extends MakeupForm
                         'home' => $value['pages']['home']
                     ]
                 );
+
+                $this->pageModel->disconnect('data/pages.json', $pages);
             }
 
-            $this->pageModel->disconnect('data/pages.json', $pages);
         }
     
         
